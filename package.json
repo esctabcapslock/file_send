@@ -1,0 +1,14 @@
+{
+    "name": "file_send",
+    "version": "1.0.0",
+    "main": "m.js",
+    "scripts": {
+        "start": "node m.js",
+        "build":"pkg m.js"
+    },
+    "pkg": {
+        "script": ["m.js"],
+        "assets": ["index.html"]
+    }
+
+}

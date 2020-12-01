@@ -1,7 +1,16 @@
 var http = require('http');
 var fs = require('fs');
 const port = 80;
-//https://zanyfelix.tistory.com/13
+
+//내 주소 알아내기
+const my_ip = require("./my_ip");
+console.log('내 컴퓨터 주소:',my_ip.my_ip())
+
+//파일 폴더 열기 (내장모듈)
+let exec = require('child_process').exec;
+exec('Explorer %cd%\\files ', {encoding: 'utf-8'},(err,result,stderr) => {})
+
+//파일 받기 위함 (외부 모듈)
 const formidable = require('formidable');
 /*
 function getFilename(z){
@@ -60,10 +69,11 @@ var server = http.createServer(function (요청, 응답) {
 			var newpath = './files/' + files.name.name;
             console.log('야',oldpath,newpath);
 		          fs.rename(oldpath, newpath, function (err) {
-                      
-                    if (err) throw err;
+                      var headcode=200
+                    if (err) console.log('post file fs.remame error',err);headcode=404
+                    
                       //메인
-                   응답.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+                   응답.writeHead(headcode, {'Content-Type': 'text/html; charset=utf-8','location':'/'});
                     응답.end("<script>location='/'</script>");
 		});
         });
